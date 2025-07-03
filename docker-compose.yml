@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  # Define o serviço da aplicação web
+  app:
+    # Nome do contêiner para facilitar a identificação (ex: docker ps)
+    container_name: imersao_api
+    # Constrói a imagem a partir do Dockerfile no diretório atual (.)
+    build: .
+    # Mapeia a porta 8000 do host para a porta 8000 do contêiner
+    ports:
+      - "8000:8000"
+    # Monta o diretório atual (.) no diretório /app do contêiner
+    # Isso permite o live-reload e a persistência do banco de dados SQLite (escola.db)
+    volumes:
+      - .:/app
+    # Comando que será executado ao iniciar o contêiner, substituindo o CMD do Dockerfile.
+    # Usa as variáveis de ambiente para iniciar o Uvicorn com reload ativado.
+    
